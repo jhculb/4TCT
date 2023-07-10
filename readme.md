@@ -30,6 +30,10 @@ Run ```python src/requester.py``` from the root directory after installing the r
 Tested on Python 3.10.2 and 3.11.4
 ### Run from Docker
 
+If it is desired to pass arguments, edit the CMD found in ```src/Dockerfile```, passing in arguments as strings but retaining the `-d` argument, e.g:
+
+```CMD ["python", "/app/requester.py", "-d", "-b", "adv", "toy", "sci"]```
+
 Run ```docker-compose up``` from the root directory.
 
 #### Versions
@@ -47,13 +51,11 @@ Tested on Docker Version 23.0.5, Docker Compose v2.17.3
 4. The loop repeats by checking each board for new and dead threads, then querying the new and live threads.
 ### Reruns
 The requester attempts to pick up from previous runs by observing the state of the saves directory. If this is deleted it will act as from fresh.
-### If-Modified-Since
-A manual version of if-modified-since is implemented for threads.
 ### Logs
 Debug logs are set to capture each API call and are as such, very detailed (approx 80 times as large as info). By default the info log is output to terminal.
 
 ## Limits
-Please follow the 4Chan API Rules and Terms of Service found [here](https://github.com/4chan/4chan-API/blob/master/README.md).
+Please ensure you follow the 4Chan API Rules and Terms of Service found [here](https://github.com/4chan/4chan-API/blob/master/README.md).
 
 At time of writing these are: 
 ### API Rules ###
