@@ -246,7 +246,7 @@ class requester:
         return now.strftime("%Y_%m_%d")
 
     @staticmethod
-    def _get_full_time(sel):
+    def _get_full_time():
         now = datetime.utcnow()
         return now.strftime("%Y_%m_%d_%H_%M_%S")
 
