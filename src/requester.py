@@ -271,7 +271,7 @@ class requester:
         since = time.gmtime(time.mktime(since))
         return {"If-Modified-Since": time.strftime("%a, %d %b %Y %H:%M:%S GMT", since)}
 
-    def get_single_board_threadlist(self, board_code:str):
+    def get_single_board_threadlist(self, board_code: str):
         self._check_time_and_wait()
         self._logger.debug(f"Board /{board_code}/ thread information requested")
         if board_code not in self._last_requested:
@@ -303,7 +303,7 @@ class requester:
             return None
         return r_thread_list.json()
 
-    def get_thread(self, board_code:str, op_ID:int):
+    def get_thread(self, board_code: str, op_ID: int):
         self._check_time_and_wait()
         if board_code not in self._last_requested[board_code]["threads"]:
             r_thread = requests.get(
@@ -353,7 +353,7 @@ class requester:
         time.sleep(self._request_time_limit)
         return r_thread.json()
 
-    def get_and_save_chan_info(self, outpath:Path=None, filename:str=None):
+    def get_and_save_chan_info(self, outpath: Path = None, filename: str = None):
         timestamp = self._get_day()
         if outpath is None:
             outpath = self._base_save_path / "saves" / timestamp
@@ -364,7 +364,11 @@ class requester:
             json.dump(self.get_chan_info_json(), outfile, indent=2)
 
     def get_and_save_single_board_threadlist(
-        self, board_code:str, outpath:Path=None, filename:str=None, with_return:bool=False
+        self,
+        board_code: str,
+        outpath: Path = None,
+        filename: str = None,
+        with_return: bool = False,
     ):
         timestamp = self._get_day()
         if outpath is None:
@@ -383,7 +387,9 @@ class requester:
         if with_return:
             return threadlist
 
-    def get_and_save_thread(self, board_code:str, op_ID:int, outpath:Path=None, filename:str=None):
+    def get_and_save_thread(
+        self, board_code: str, op_ID: int, outpath: Path = None, filename: str = None
+    ):
         timestamp = self._get_day()
         if outpath is None:
             outpath = (
@@ -421,7 +427,7 @@ class requester:
             with open(fullname, "w") as outfile:
                 json.dump(self.get_thread(board_code, op_ID), outfile, indent=2)
 
-    def _setup_logging(self, logfolderpath:Path):
+    def _setup_logging(self, logfolderpath: Path):
         logfolder = self._base_save_path / logfolderpath
         logfolder.mkdir(parents=True, exist_ok=True)
 
